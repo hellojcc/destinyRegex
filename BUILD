@@ -1,6 +1,6 @@
 cc_library(
     name = "regexlib",
     srcs = glob(["*.c"]),
-    hdrs = glob(["*.h"]) + ["ENVIRONMENT"],
+    hdrs = glob(["*.h"]),
     visibility = ["//visibility:public"],
 )
