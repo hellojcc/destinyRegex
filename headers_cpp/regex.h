@@ -1,8 +1,8 @@
 /*******************************************************
  *	regex.h
- *	author:ÌìÃü½£Ö÷
- *	copyright(c) 2015 - ~: Çë²é¿´LICENSEÎÄ¼ş
- *	Description(ÃèÊö):ÕıÔò±í´ïÊ½
+ *	author:å¤©å‘½å‰‘ä¸»
+ *	copyright(c) 2015 - ~: è¯·æŸ¥çœ‹LICENSEæ–‡ä»¶
+ *	Description(æè¿°):æ­£åˆ™è¡¨è¾¾å¼
  ******************************************************/
 #pragma once
 #ifndef REGULAR_EXPRESSION_H
@@ -32,8 +32,8 @@ namespace RegularExpression {
 	public:
 		list_char* match_letters;
 		single_condition* next;
-		unsigned int least_match_time;//×îÉÙÆ¥Åä´ÎÊı
-		unsigned int max_match_time;//×î¶àÆ¥Åä´ÎÊı
+		unsigned int least_match_time;//æœ€å°‘åŒ¹é…æ¬¡æ•°
+		unsigned int max_match_time;//æœ€å¤šåŒ¹é…æ¬¡æ•°
 		inline single_condition(list_char* match_ls, unsigned int l_m_time, unsigned m_m_time) {
 			this->least_match_time = l_m_time;
 			this->max_match_time = m_m_time;
@@ -83,9 +83,9 @@ namespace RegularExpression {
 	static int temp_least_num = 0;
 	static int temp_max_num = 0;
 
-	const char* error_str = "";
+	static const char* error_str = "";
 
-	/*Ìí¼Ólist_char*/
+	/*æ·»åŠ list_char*/
 	inline void char_list_add_char(char c) {
 		if (!current_char_list) {
 			current_char_list = new list_char(c);
@@ -97,7 +97,7 @@ namespace RegularExpression {
 		}
 	}
 
-	/*Ìí¼ÓSingle_condition*/
+	/*æ·»åŠ Single_condition*/
 	inline void s_condition_add_s_condition(list_char* list) {
 		if (!current_s_condition) {
 			current_s_condition = new single_condition(list, temp_least_num, temp_max_num);
@@ -109,7 +109,7 @@ namespace RegularExpression {
 		}
 	}
 
-	/*Ìí¼Ócondition*/
+	/*æ·»åŠ condition*/
 	inline void condition_add_condition(single_condition* s_con) {
 		if (!current_condition) {
 			current_condition = new condition(s_con);
@@ -121,7 +121,7 @@ namespace RegularExpression {
 		}
 	}
 
-	/*list_charÌí¼ÓÁ¬Ğø×Ö·û*/
+	/*list_charæ·»åŠ è¿ç»­å­—ç¬¦*/
 	inline void char_list_add_many_char(char start, char end) {
 		if (!current_char_list) {
 			current_char_list = new list_char(start);
@@ -140,7 +140,7 @@ namespace RegularExpression {
 		}
 	}
 
-	/*ÊÍ·Å¿Õ¼ä*/
+	/*é‡Šæ”¾ç©ºé—´*/
 	inline void free_current() {
 		if (current_char_list) {
 			delete current_char_list;
@@ -153,7 +153,7 @@ namespace RegularExpression {
 		}
 	}
 
-	/*ÕıÔò±í´ïÊ½Àà*/
+	/*æ­£åˆ™è¡¨è¾¾å¼ç±»*/
 	class regex {
 	public:
 		string reg_str;
@@ -162,17 +162,17 @@ namespace RegularExpression {
 		inline regex() :reg_str("") {}
 		inline regex(const char* str):reg_str(str) {
 			if (!this->compile()) {
-				throw exception(error_str);
+				throw regException(error_str);
 			}
 		}
 		inline regex(const string& str) : reg_str(str) {
 			if (!this->compile()) {
-				throw exception(error_str);
+				throw regException(error_str);
 			}
 		}
 		explicit inline regex(const std::string& str) : reg_str(str) {
 			if (!this->compile()) {
-				throw exception(error_str);
+				throw regException(error_str);
 			}
 		}
 		inline virtual ~regex() {
@@ -186,13 +186,13 @@ namespace RegularExpression {
 			return *this;
 		}
 	public:
-		/*±àÒë*/
+		/*ç¼–è¯‘*/
 		bool compile() {
 			this->conditions = NULL;
 			return init(0, this->reg_str.size() - 1);
 		}
 
-		/*µÃµ½Æ¥ÅäÊıÁ¿*/
+		/*å¾—åˆ°åŒ¹é…æ•°é‡*/
 		bool get_match_num(int begin, int end) {
 			if (begin > end || reg_str[begin] != LEFT_LARGE_BRACE) {
 				if (reg_str[begin] == PLUS) {
@@ -218,7 +218,7 @@ namespace RegularExpression {
 			for (int i = begin + 1; i <= end; i++) {
 				if (reg_str[i] == BLANK || reg_str[i] >= '0'&&reg_str[i] <= '9') {
 					if (temp_num > 9) {
-						error_str = "Æ¥Åä´ÎÊıµÄÊı×ÖÌ«´ó!";
+						error_str = "åŒ¹é…æ¬¡æ•°çš„æ•°å­—å¤ªå¤§!";
 						delete[] buffer;
 						return false;
 					}
@@ -227,7 +227,7 @@ namespace RegularExpression {
 				}
 				else if (reg_str[i] == COMMA) {
 					if (comma_num > 0) {
-						error_str = "Æ¥Åä´ÎÊıÓï·¨´íÎó!";
+						error_str = "åŒ¹é…æ¬¡æ•°è¯­æ³•é”™è¯¯!";
 						delete[] buffer;
 						return false;
 					}
@@ -238,7 +238,7 @@ namespace RegularExpression {
 						temp_num = 0;
 					}
 					else {
-						error_str = "Æ¥Åä´ÎÊıÓï·¨´íÎó!";
+						error_str = "åŒ¹é…æ¬¡æ•°è¯­æ³•é”™è¯¯!";
 						delete[] buffer;
 						return false;
 					}
@@ -249,14 +249,14 @@ namespace RegularExpression {
 						if (is_num(buffer)) {
 							temp_max_num = atoi(buffer);
 							if (temp_least_num > temp_max_num) {
-								error_str = "×îĞ¡Æ¥Åä´ÎÊı²»ÄÜ´óÓÚ×î´óÆ¥Åä´ÎÊı!";
+								error_str = "æœ€å°åŒ¹é…æ¬¡æ•°ä¸èƒ½å¤§äºæœ€å¤§åŒ¹é…æ¬¡æ•°!";
 								delete[] buffer;
 								return false;
 							}
 						}
 						else {
 							if (has_num(buffer)) {
-								error_str = "Æ¥Åä´ÎÊıÓï·¨´íÎó!";
+								error_str = "åŒ¹é…æ¬¡æ•°è¯­æ³•é”™è¯¯!";
 								delete[] buffer;
 								return false;
 							}
@@ -272,7 +272,7 @@ namespace RegularExpression {
 							temp_max_num = temp_least_num;
 						}
 						else {
-							error_str = "Æ¥Åä´ÎÊıÓï·¨´íÎó!";
+							error_str = "åŒ¹é…æ¬¡æ•°è¯­æ³•é”™è¯¯!";
 							delete[] buffer;
 							return false;
 						}
@@ -282,17 +282,17 @@ namespace RegularExpression {
 					return true;
 				}
 				else {
-					error_str = "¼ÆËãÆ¥Åä´ÎÊıÊ±³öÏÖÁËÒâÍâµÄ×Ö·û";
+					error_str = "è®¡ç®—åŒ¹é…æ¬¡æ•°æ—¶å‡ºç°äº†æ„å¤–çš„å­—ç¬¦";
 					delete[] buffer;
 					return false;
 				}
 			}
-			error_str = "×ó´óÀ¨ºÅ{ºÍÓÒ´óÀ¨ºÅ}²»Æ¥Åä!";
+			error_str = "å·¦å¤§æ‹¬å·{å’Œå³å¤§æ‹¬å·}ä¸åŒ¹é…!";
 			delete[] buffer;
 			return false;
 		}
 
-		/*×ªÒå×Ö·û´¦Àí*/
+		/*è½¬ä¹‰å­—ç¬¦å¤„ç†*/
 		bool change_letter(int begin, int end) {
 			if (begin > end) {
 				return false;
@@ -408,12 +408,12 @@ namespace RegularExpression {
 					char_list_add_char(RANGE_LETTER);
 					return true;
 				default:
-					error_str = "´íÎóµÄ×ªÒå×Ö·û!";
+					error_str = "é”™è¯¯çš„è½¬ä¹‰å­—ç¬¦!";
 					return false;
 			}
 		}
 
-		/*×Ö·û·¶Î§·û-µÄ´¦Àí*/
+		/*å­—ç¬¦èŒƒå›´ç¬¦-çš„å¤„ç†*/
 		bool range(int begin, int end) {
 			if (begin > end) {
 				return false;
@@ -430,7 +430,7 @@ namespace RegularExpression {
 					}
 				}
 				else {
-					error_str = "·Ç·¨µÄ·¶Î§(-×ó²¿×Ö·û±ØĞëĞ¡ÓÚ-ÓÒ²¿×Ö·û)!";
+					error_str = "éæ³•çš„èŒƒå›´(-å·¦éƒ¨å­—ç¬¦å¿…é¡»å°äº-å³éƒ¨å­—ç¬¦)!";
 					return false;
 				}
 			}
@@ -440,20 +440,20 @@ namespace RegularExpression {
 			return true;
 		}
 
-		/*·ÖÎöÖĞÀ¨ºÅÖĞµÄÄÚÈİ*/
+		/*åˆ†æä¸­æ‹¬å·ä¸­çš„å†…å®¹*/
 		bool left_mid_bracket(int begin, int end) {
 			for (int i = begin; i <= end; i++) {
 				switch (reg_str[i]) {
 					case LEFT_BRACKET:
 					case RIGHT_BRACKET:
-						error_str = "ÖĞÀ¨ºÅ[]ÖĞ²»ÔÊĞíÇ¶Ì×Ğ¡À¨ºÅ()!";
+						error_str = "ä¸­æ‹¬å·[]ä¸­ä¸å…è®¸åµŒå¥—å°æ‹¬å·()!";
 						return false;
 					case LEFT_LARGE_BRACE:
 					case RIGHT_LARGE_BRACE:
-						error_str = "ÖĞÀ¨ºÅ[]ÖĞ²»ÔÊĞíÇ¶Ì×´óÀ¨ºÅ{}!";
+						error_str = "ä¸­æ‹¬å·[]ä¸­ä¸å…è®¸åµŒå¥—å¤§æ‹¬å·{}!";
 						return false;
 					case LEFT_MID_BRACKET:
-						error_str = "ÖĞÀ¨ºÅ[]²»ÔÊĞíÇ¶Ì×!";
+						error_str = "ä¸­æ‹¬å·[]ä¸å…è®¸åµŒå¥—!";
 						return false;
 					case RIGHT_MID_BRACKET:
 						if (current_char_list) {
@@ -462,7 +462,7 @@ namespace RegularExpression {
 							return true;
 						}
 						else {
-							error_str = "ÖĞÀ¨ºÅ[]ÖĞ²»ÄÜÎª¿Õ!";
+							error_str = "ä¸­æ‹¬å·[]ä¸­ä¸èƒ½ä¸ºç©º!";
 							return false;
 						}
 						//break;
@@ -484,12 +484,12 @@ namespace RegularExpression {
 						break;
 				}
 			}
-			error_str = "×óÖĞÀ¨ºÅ[Î´ÕÒµ½Æ¥ÅäµÄÓÒÖĞÀ¨ºÅ]!";
+			error_str = "å·¦ä¸­æ‹¬å·[æœªæ‰¾åˆ°åŒ¹é…çš„å³ä¸­æ‹¬å·]!";
 			return false;
 		}
 
-		/*³õÊ¼×´Ì¬*/
-		/*NOTICE:²»Ê¹ÓÃtype²ÎÊı*/
+		/*åˆå§‹çŠ¶æ€*/
+		/*NOTICE:ä¸ä½¿ç”¨typeå‚æ•°*/
 		bool init(int begin, int end) {
 			current_condition = NULL;
 			temp_condition = NULL;
@@ -500,22 +500,22 @@ namespace RegularExpression {
 			for (int i = begin; i <= end; i++) {
 				switch (reg_str[i]) {
 					case LEFT_LARGE_BRACE:
-						error_str = "×ó´óÀ¨ºÅ{²»ÄÜÖ±½Ó³öÏÖ!";
+						error_str = "å·¦å¤§æ‹¬å·{ä¸èƒ½ç›´æ¥å‡ºç°!";
 						free_current();
 						return false;
 					case RIGHT_LARGE_BRACE:
-						error_str = "ÓÒ´óÀ¨ºÅ}ÕÒ²»µ½Æ¥ÅäµÄ×ó´óÀ¨ºÅ!";
+						error_str = "å³å¤§æ‹¬å·}æ‰¾ä¸åˆ°åŒ¹é…çš„å·¦å¤§æ‹¬å·!";
 						free_current();
 						return false;
 					case LEFT_BRACKET:
 					case RIGHT_BRACKET:
 						//NOTICE
-						error_str = "ÔİÊ±²»Ö§³ÖÊ¹ÓÃĞ¡À¨ºÅ()·Ö¶ÎÆ¥Åä";
+						error_str = "æš‚æ—¶ä¸æ”¯æŒä½¿ç”¨å°æ‹¬å·()åˆ†æ®µåŒ¹é…";
 						free_current();
 						return false;
 					case OR_CHAR:
 						if (!current_s_condition) {
-							error_str = "|µÄÊ¹ÓÃ²»ÕıÈ·!";
+							error_str = "|çš„ä½¿ç”¨ä¸æ­£ç¡®!";
 							free_current();
 							return false;
 						}
@@ -524,11 +524,11 @@ namespace RegularExpression {
 						temp_s_condition = NULL;
 						break;
 					case PLUS:
-						error_str = "¼ÓºÅ+²»ÄÜµ¥¶À³öÏÖ!";
+						error_str = "åŠ å·+ä¸èƒ½å•ç‹¬å‡ºç°!";
 						free_current();
 						return false;
 					case MULTI_MATCH_LETTER:
-						error_str = "ĞÇºÅ*²»ÄÜµ¥¶À³öÏÖ!";
+						error_str = "æ˜Ÿå·*ä¸èƒ½å•ç‹¬å‡ºç°!";
 						free_current();
 						return false;
 					case LEFT_MID_BRACKET:
@@ -552,13 +552,13 @@ namespace RegularExpression {
 							}
 						}
 						else {
-							error_str = "ÖĞÀ¨ºÅ[]²»ÔÊĞíÇ¶Ì×!";
+							error_str = "ä¸­æ‹¬å·[]ä¸å…è®¸åµŒå¥—!";
 							free_current();
 							return false;
 						}
 						break;
 					case RIGHT_MID_BRACKET:
-						error_str = "ÓÒÖĞÀ¨ºÅÕÒ²»µ½Æ¥ÅäµÄ×óÖĞÀ¨ºÅ!";
+						error_str = "å³ä¸­æ‹¬å·æ‰¾ä¸åˆ°åŒ¹é…çš„å·¦ä¸­æ‹¬å·!";
 						free_current();
 						return false;
 					case CHANGE_LETTER:
@@ -624,7 +624,7 @@ namespace RegularExpression {
 				temp_s_condition = NULL;
 			}
 			if (!current_condition) {
-				error_str = "ÕıÔò±í´ïÊ½²»ÄÜÎª¿Õ!";
+				error_str = "æ­£åˆ™è¡¨è¾¾å¼ä¸èƒ½ä¸ºç©º!";
 				free_current();
 				return false;
 			}
@@ -633,7 +633,7 @@ namespace RegularExpression {
 			return true;
 		}
 
-		/*µÃµ½ÕıÔò±í´ïÊ½×î¶ÌÆ¥Åä³¤¶È*/
+		/*å¾—åˆ°æ­£åˆ™è¡¨è¾¾å¼æœ€çŸ­åŒ¹é…é•¿åº¦*/
 		int get_regex_least_length()const {
 			int least_len = MAX_INT_VAL;
 			int len;
@@ -653,7 +653,7 @@ namespace RegularExpression {
 			return least_len;
 		}
 
-		/*µÃµ½ÕıÔò±í´ïÊ½×î³¤Æ¥Åä³¤¶È*/
+		/*å¾—åˆ°æ­£åˆ™è¡¨è¾¾å¼æœ€é•¿åŒ¹é…é•¿åº¦*/
 		int get_regex_max_length()const {
 			int max_len = 0;
 			int len;
@@ -678,7 +678,7 @@ namespace RegularExpression {
 	};
 
 	template<class T>
-	/*ÕıÔò±í´ïÊ½°ü×°Àà*/
+	/*æ­£åˆ™è¡¨è¾¾å¼åŒ…è£…ç±»*/
 	class regex_token {
 	public:
 		T match_str;
@@ -693,7 +693,7 @@ namespace RegularExpression {
 	};
 
 	template<class T>
-	/*ÕıÔò±í´ïÊ½µü´úÀà*/
+	/*æ­£åˆ™è¡¨è¾¾å¼è¿­ä»£ç±»*/
 	class regex_token_iterator {
 	public:
 
@@ -732,7 +732,7 @@ namespace RegularExpression {
 			this->current = NULL;
 			if (begin > end) {
 				if (!regex_splite("", r)) {
-					throw exception(error_str);
+					throw regException(error_str);
 				}
 				return;
 			}
@@ -745,11 +745,11 @@ namespace RegularExpression {
 			size++;
 			string str(begin, size);
 			if (!regex_splite(str, r)) {
-				throw exception(error_str);
+				throw regException(error_str);
 			}
 		}
 	private:
-		/*Ìí¼Ó×Ö·û´®*/
+		/*æ·»åŠ å­—ç¬¦ä¸²*/
 		void token_it_add_token(const string& s) {
 			if (!this->first) {
 				this->first = new regex_token<T>(s);
@@ -761,10 +761,10 @@ namespace RegularExpression {
 			}
 		}
 	public:
-		/*ÕıÔò±í´ïÊ½·Ö¸î*/
+		/*æ­£åˆ™è¡¨è¾¾å¼åˆ†å‰²*/
 		bool regex_splite(const string& str, const regex& reg);
 	private:
-		/*ÕıÔò±í´ïÊ½·Ö¸î¸¨Öúº¯Êı*/
+		/*æ­£åˆ™è¡¨è¾¾å¼åˆ†å‰²è¾…åŠ©å‡½æ•°*/
 		int regex_splite_s(const string& str, const regex& reg, int start, int end, int max, int least);
 	public:
 		regex_token_iterator& operator=(const regex_token_iterator<T> &it) {
@@ -840,8 +840,8 @@ namespace RegularExpression {
 
 	typedef regex_token_iterator<string> sregex_token_iterator;
 
-	//ÕıÔò±í´ïÊ½Æ¥Åälist_char
-	bool char_list_match(const string& str, int start_index, int end_index, list_char* list) {
+	//æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…list_char
+	static bool char_list_match(const string& str, int start_index, int end_index, list_char* list) {
 		for (int i = start_index; i <= end_index; i++) {
 			list_char* li = list;
 			bool b = false;
@@ -859,8 +859,8 @@ namespace RegularExpression {
 		return true;
 	}
 
-	/*ÕıÔò±í´ïÊ½Æ¥Åäsingle_condition*/
-	bool s_condition_match(const string& str, int start_index, int end_index, single_condition* s_con) {
+	/*æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…single_condition*/
+	static bool s_condition_match(const string& str, int start_index, int end_index, single_condition* s_con) {
 		for (int i = s_con->least_match_time; i <= (int)s_con->max_match_time; i++) {
 			if (start_index + i - 1 > end_index) {
 				return false;
@@ -880,15 +880,15 @@ namespace RegularExpression {
 		return false;
 	}
 
-	//ÕıÔò±í´ïÊ½Æ¥Åäcondition
+	//æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…condition
 	inline bool condition_match(const string& str, int start_index, int end_index, condition* con) {
 		return s_condition_match(str, start_index, end_index, con->single_conditions);
 	}
 
-	//ÕıÔò±í´ïÊ½Æ¥Åä
-	bool regex_match(const string& str, regex &reg) {
+	//æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…
+	static bool regex_match(const string& str, regex &reg) {
 		if (reg.reg_str.size() < 1) {
-			error_str = "ÕıÔò±í´ïÊ½²»ÄÜÎª¿Õ!";
+			error_str = "æ­£åˆ™è¡¨è¾¾å¼ä¸èƒ½ä¸ºç©º!";
 			return false;
 		}
 		condition* con = reg.conditions;
@@ -901,10 +901,10 @@ namespace RegularExpression {
 		return false;
 	}
 
-	//ÕıÔò±í´ïÊ½ËÑÑ°
-	bool regex_search(const string& str, regex &reg) {
+	//æ­£åˆ™è¡¨è¾¾å¼æœå¯»
+	static bool regex_search(const string& str, regex &reg) {
 		if (reg.reg_str.size() < 1) {
-			error_str = "ÕıÔò±í´ïÊ½²»ÄÜÎª¿Õ!";
+			error_str = "æ­£åˆ™è¡¨è¾¾å¼ä¸èƒ½ä¸ºç©º!";
 			return false;
 		}
 		int len = str.size();
@@ -926,10 +926,10 @@ namespace RegularExpression {
 	}
 
 	template<class T>
-	//ÕıÔò±í´ïÊ½ÇĞ¸î×Ö·û´®
+	//æ­£åˆ™è¡¨è¾¾å¼åˆ‡å‰²å­—ç¬¦ä¸²
 	bool regex_token_iterator<T>::regex_splite(const string& str, const regex &reg) {
 		if (reg.reg_str.size() < 1) {
-			error_str = "ÕıÔò±í´ïÊ½²»ÄÜÎª¿Õ!";
+			error_str = "æ­£åˆ™è¡¨è¾¾å¼ä¸èƒ½ä¸ºç©º!";
 			return false;
 		}
 		int len = str.size();
@@ -945,7 +945,7 @@ namespace RegularExpression {
 	}
 
 	template<class T>
-	/*ÕıÔò±í´ïÊ½·Ö¸î¸¨Öúº¯Êı*/
+	/*æ­£åˆ™è¡¨è¾¾å¼åˆ†å‰²è¾…åŠ©å‡½æ•°*/
 	int regex_token_iterator<T>::regex_splite_s(const string& str, const regex& reg, int start, int end, int max, int least) {
 		for (int start_index = start; start_index <= end; start_index++) {
 			int least_index = start_index + least - 1;

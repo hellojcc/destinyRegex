@@ -1,20 +1,20 @@
 /*******************************************************
- *	exception.h
- *	author:ÌìÃü½£Ö÷
- *	copyright(c) 2015 - ~: Çë²é¿´LICENSEÎÄ¼ş
- *	Description(ÃèÊö):×Ö·û´®
+ *	regException.h
+ *	author:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *	copyright(c) 2015 - ~: ï¿½ï¿½é¿´LICENSEï¿½Ä¼ï¿½
+ *	Description(ï¿½ï¿½ï¿½ï¿½):ï¿½Ö·ï¿½ï¿½ï¿½
  ******************************************************/
 #pragma once
 #ifndef DESTINY_EXCEPTION_H
 #define DESTINY_EXCEPTION_H
 
 namespace RegularExpression {
-	class exception {
+	class regException {
 	private:
 		const char* str;
 	public:
-		explicit exception(const char* s) :str(s) {}
-		virtual ~exception(){}
+		explicit regException(const char* s) :str(s) {}
+		virtual ~regException(){}
 		inline const char* what() {
 			return this->str;
 		}

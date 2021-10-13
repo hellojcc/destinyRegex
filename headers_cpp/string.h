@@ -1,8 +1,8 @@
 /*******************************************************
  *	string.h
- *	author:ÌìÃü½£Ö÷
- *	copyright(c) 2015 - ~: Çë²é¿´LICENSEÎÄ¼ş
- *	Description(ÃèÊö):×Ö·û´®
+ *	author:å¤©å‘½å‰‘ä¸»
+ *	copyright(c) 2015 - ~: è¯·æŸ¥çœ‹LICENSEæ–‡ä»¶
+ *	Description(æè¿°):å­—ç¬¦ä¸²
  ******************************************************/
 #pragma once
 #ifndef STRING_H
@@ -97,17 +97,17 @@ namespace RegularExpression {
 			return this->str[index];
 		}
 
-		/*·µ»Ø³¤¶È*/
+		/*è¿”å›é•¿åº¦*/
 		inline int size() const {
 			return this->length;
 		}
 
-		/*·µ»Ø³¤¶È*/
+		/*è¿”å›é•¿åº¦*/
 		inline int get_length() const {
 			return this->length;
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		string operator+(const string &j) const {
 			string result(this->length + j.length);
 			for (int i = 0; i < this->length; i++) {
@@ -120,7 +120,7 @@ namespace RegularExpression {
 			return result;
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		string operator+(const std::string &j) const {
 		    int size = (int) j.size();
 		    string result(this->length + size);
@@ -134,7 +134,7 @@ namespace RegularExpression {
 		    return result;
 		}
 
-		/*ÔÚÎ²²¿×·¼Ó×Ö·û*/
+		/*åœ¨å°¾éƒ¨è¿½åŠ å­—ç¬¦*/
 		string operator+(const char &c) const {
 			string result(this->length + 1);
 			for (int i = 0; i < this->length; i++) {
@@ -145,7 +145,7 @@ namespace RegularExpression {
 			return result;
 		}
 
-		/*ÊÇ·ñÊı×Ö*/
+		/*æ˜¯å¦æ•°å­—*/
 		bool is_num()const {
 			int dot_num = 0;
 			for (int i = 0; i < this->length; i++) {
@@ -161,7 +161,7 @@ namespace RegularExpression {
 			return dot_num <= 1;
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		void appand(const string &j) {
 			string temp = *this;
 			if (this->str) {
@@ -178,7 +178,7 @@ namespace RegularExpression {
 			this->length = this->length + j.length;
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		void appand(const std::string &j) {
 			string temp = *this;
 			if (this->str) {
@@ -195,7 +195,7 @@ namespace RegularExpression {
 			this->length = this->length + j.size();
 		}
 
-		/*ÔÚÎ²²¿Ìí¼Ó×Ö·û*/
+		/*åœ¨å°¾éƒ¨æ·»åŠ å­—ç¬¦*/
 		void appand(const char &c) {
 			string temp = *this;
 			if (this->str) {
@@ -210,7 +210,7 @@ namespace RegularExpression {
 			this->length = this->length + 1;
 		}
 
-		/*ÔÚÎ²²¿Ìí¼Ó×Ö·û*/
+		/*åœ¨å°¾éƒ¨æ·»åŠ å­—ç¬¦*/
 		void operator+=(const char &c) {
 			string temp = *this;
 			if (this->str) {
@@ -225,7 +225,7 @@ namespace RegularExpression {
 			this->length = this->length + 1;
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		void operator+=(const string &j) {
 			string temp = *this;
 			if (this->str) {
@@ -242,7 +242,7 @@ namespace RegularExpression {
 			this->length = this->length + j.length;
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		void operator+=(const std::string &j) {
 		    int size = (int) j.size();
 		    string temp = *this;
@@ -260,7 +260,7 @@ namespace RegularExpression {
 		    this->length = this->length + size;
 		}
 
-		/*×Ö·û´®ÏàµÈ±È½Ï*/
+		/*å­—ç¬¦ä¸²ç›¸ç­‰æ¯”è¾ƒ*/
 		bool operator==(const string &j) const {
 			if (this->length != j.length) {
 				return false;
@@ -273,7 +273,7 @@ namespace RegularExpression {
 			return true;
 		}
 
-		/*×Ö·û´®²»µÈ±È½Ï*/
+		/*å­—ç¬¦ä¸²ä¸ç­‰æ¯”è¾ƒ*/
 		inline bool operator!=(const string &j) const {
 			return !this->operator==(j);
 		}
@@ -310,7 +310,7 @@ namespace RegularExpression {
 			return !this->operator>=(str2);
 		}
 
-		/*´ÓË÷Òı(´Ó0Ë÷Òı)pos´¦½ØÈ¡³¤¶ÈÎªlenµÄ×Ó´®(°üº¬pos)*/
+		/*ä»ç´¢å¼•(ä»0ç´¢å¼•)poså¤„æˆªå–é•¿åº¦ä¸ºlençš„å­ä¸²(åŒ…å«pos)*/
 		string sub_str(int pos, int len) const {
 			if (pos < 0 || pos + len > this->length || len < 0) {
 				string result(0);
@@ -327,12 +327,12 @@ namespace RegularExpression {
 			}
 		}
 
-		/*·µ»Ø×Ö·ûÊı×é*/
+		/*è¿”å›å­—ç¬¦æ•°ç»„*/
 		const char* c_str() const {
 			return this->str;
 		}
 
-		/*Êä³ö*/
+		/*è¾“å‡º*/
 		inline friend ostream& operator<<(ostream& os, const string& js) {
 			return os << js.str;
 		}
@@ -345,12 +345,12 @@ namespace RegularExpression {
 			return &(this->str[this->length - 1]);
 		}
 
-		/*×Ö·û´®Á¬½Ó*/
+		/*å­—ç¬¦ä¸²è¿æ¥*/
 		inline friend string operator+(const std::string &s, const string &js) {
 		    return string(s) + js;
 		}
 
-		/*·µ»Ø×Ö·ûËùÔÚÎ»ÖÃ*/
+		/*è¿”å›å­—ç¬¦æ‰€åœ¨ä½ç½®*/
 		int index_of(const char &c) const {
 			for (int i = 0; i < this->length; i++) {
 				if (this->str[i] == c) {
@@ -360,33 +360,33 @@ namespace RegularExpression {
 			return -1;
 		}
 
-		/*ÊÇ·ñ°üº¬×Ö·û*/
+		/*æ˜¯å¦åŒ…å«å­—ç¬¦*/
 		inline bool contains(const char &c) const {
 			return this->index_of(c) > -1;
 		}
 
-		/*ÊÇ·ñ°üº¬×Ö·û´®*/
+		/*æ˜¯å¦åŒ…å«å­—ç¬¦ä¸²*/
 		inline bool contains(const string &s) const {
 			return this->index_of_KMP(s) > -1;
 		}
 
-		/*ÊÇ·ñ°üº¬×Ö·û´®*/
+		/*æ˜¯å¦åŒ…å«å­—ç¬¦ä¸²*/
 		inline bool contains(const std::string &s) const {
 		    return this->index_of_KMP(s) > -1;
 		}
 
-		/*·µ»ØÖ¸¶¨×Ó×Ö·û´®ÔÚ´Ë×Ö·û´®ÖĞµÚÒ»´Î³öÏÖ´¦µÄË÷Òı(´Ó0¿ªÊ¼Ë÷Òı)*/
+		/*è¿”å›æŒ‡å®šå­å­—ç¬¦ä¸²åœ¨æ­¤å­—ç¬¦ä¸²ä¸­ç¬¬ä¸€æ¬¡å‡ºç°å¤„çš„ç´¢å¼•(ä»0å¼€å§‹ç´¢å¼•)*/
 		int index_of(const string &s) const {
 			return this->index_of_KMP(s);
 		}
 
-		/*·µ»ØÖ¸¶¨×Ó×Ö·û´®ÔÚ´Ë×Ö·û´®ÖĞµÚÒ»´Î³öÏÖ´¦µÄË÷Òı(´Ó0¿ªÊ¼Ë÷Òı)*/
+		/*è¿”å›æŒ‡å®šå­å­—ç¬¦ä¸²åœ¨æ­¤å­—ç¬¦ä¸²ä¸­ç¬¬ä¸€æ¬¡å‡ºç°å¤„çš„ç´¢å¼•(ä»0å¼€å§‹ç´¢å¼•)*/
 		int index_of(const std::string &s) const {
 			return this->index_of_KMP(s);
 		}
 
 	protected:
-		/*KMPÊ§°Üº¯Êı*/
+		/*KMPå¤±è´¥å‡½æ•°*/
 		void function_fail_KMP(int *&next) const {
 			int j = 0;
 			int k = -1;
@@ -404,8 +404,8 @@ namespace RegularExpression {
 		}
 
 	public:
-		/*×Ö·û´®Æ¥ÅäKMPËã·¨*/
-		/*Èç¹û´ÓË÷ÒıposÆğ´Ë×Ö·û´®°üº¬ p,Ôò·µ»ØpµÚÒ»¸ö×Ö·ûÔÚ´Ë×Ö·û´®ÖĞµÄÎ»ÖÃ*/
+		/*å­—ç¬¦ä¸²åŒ¹é…KMPç®—æ³•*/
+		/*å¦‚æœä»ç´¢å¼•posèµ·æ­¤å­—ç¬¦ä¸²åŒ…å« p,åˆ™è¿”å›pç¬¬ä¸€ä¸ªå­—ç¬¦åœ¨æ­¤å­—ç¬¦ä¸²ä¸­çš„ä½ç½®*/
 		int index_of_KMP(const string &p, const int pos = 0) const {
 			if (p.length == 0 && pos < this->length) {
 				return 0;
@@ -430,7 +430,7 @@ namespace RegularExpression {
 			return p.str[j] == '\0' ? i - j : -1;
 		}
 
-		/*×Ö·ûÅúÁ¿Ìæ»»*/
+		/*å­—ç¬¦æ‰¹é‡æ›¿æ¢*/
 		void replace(char c, char new_char) {
 			for (int i = 0; i < this->length; i++) {
 				if (this->str[i] == c) {
@@ -439,7 +439,7 @@ namespace RegularExpression {
 			}
 		}
 
-		/*´ÓÖ¸¶¨Î»ÖÃ(index(´Ó0¿ªÊ¼Ë÷Òı))ÒÆ³ıÖ¸¶¨³¤¶È(off)µÄ×Ö·û*/
+		/*ä»æŒ‡å®šä½ç½®(index(ä»0å¼€å§‹ç´¢å¼•))ç§»é™¤æŒ‡å®šé•¿åº¦(off)çš„å­—ç¬¦*/
 		string &remove_at(int index, int off = 1) {
 			if (index < 0 || off < 0 || index + off > length) {
 				return *this;
@@ -460,7 +460,7 @@ namespace RegularExpression {
 			return *this;
 		}
 
-		/*ÒÆ³ıÖ¸¶¨×Ö·û*/
+		/*ç§»é™¤æŒ‡å®šå­—ç¬¦*/
 		string &remove(const char &c) {
 			int index = this->index_of(c);
 			if (index < 0) {

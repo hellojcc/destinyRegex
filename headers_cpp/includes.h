@@ -1,8 +1,8 @@
 /*******************************************************
  *	includes.h
- *	author:天命剑主
- *	copyright(c) 2015 - ~: 请查看LICENSE文件
- *	Description(描述):项目中所包含的所有C++11标准库文件,一些全局变量,辅助函数,数据结构定义
+ *	author:锟斤拷锟斤拷锟斤拷锟斤拷
+ *	copyright(c) 2015 - ~: 锟斤拷榭碙ICENSE锟侥硷拷
+ *	Description(锟斤拷锟斤拷):锟斤拷目锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷C++11锟斤拷准锟斤拷锟侥硷拷,一些全锟街憋拷锟斤拷,锟斤拷锟斤拷锟斤拷锟斤拷,锟斤拷锟捷结构锟斤拷锟斤拷
  ******************************************************/
 #pragma once
 #ifndef INCLUDES_H
@@ -20,6 +20,6 @@ using std::ostream;
 #include <string>
 
 #include "exception.h"
-using RegularExpression::exception;
+using RegularExpression::regException;
 
 #endif

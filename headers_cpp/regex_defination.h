@@ -1,8 +1,8 @@
 /*******************************************************
  *	regex_defination.h
- *	author:ÌìÃü½£Ö÷
- *	copyright(c) 2015 - ~: Çë²é¿´LICENSEÎÄ¼ş
- *	Description(ÃèÊö):ÕıÔò±í´ïÊ½¶¨Òå
+ *	author:å¤©å‘½å‰‘ä¸»
+ *	copyright(c) 2015 - ~: è¯·æŸ¥çœ‹LICENSEæ–‡ä»¶
+ *	Description(æè¿°):æ­£åˆ™è¡¨è¾¾å¼å®šä¹‰
  ******************************************************/
 #ifndef REGEX_ENGINE_H
 #define REGEX_ENGINE_H
@@ -16,32 +16,32 @@
 #define RIGHT_MID_BRACKET ']'
 #define LEFT_BRACKET '('
 #define RIGHT_BRACKET ')'
-#define CHANGE_LETTER '\\' //Ë«Ğ±Ïß×ªÒå
-#define TAB 't' //ĞèÒª×ªÒå
-#define RETURN_ 'r' //ĞèÒª×ªÒå
-#define NEW_LINE 'n' //ĞèÒª×ªÒå
-#define NEW_PAGE 'f' //ĞèÒª×ªÒå
-#define TAB_V 'v' //ĞèÒª×ªÒå
-#define BLANK ' ' //¿Õ¸ñ
-#define COMMA ',' //¶ººÅ
-#define DOT '.' //Í¨Åä·û
-#define MULTI_MATCH_LETTER '*' //¶à´ÎÆ¥Åä·û
-#define QUES '?' //0»ò1¸ö
-#define PLUS '+' //Ò»¸ö»ò¶à¸ö
-#define DECIMAL 'd' //Ò»¸öÊ®½øÖÆÊı×Ö,ĞèÒª×ªÒå
-#define LOWER_LETTER 'l' //Ò»¸öĞ¡Ğ´×ÖÄ¸,ĞèÒª×ªÒå
-#define SPACE 's' //Ò»¸ö¿Õ°×·û£¨¿Õ¸ñ·û£¬ÖÆ±í·ûµÈ£©,ĞèÒª×ªÒå
-#define UPER_LETTER 'u'//Ò»¸ö´óĞ´×ÖÄ¸,ĞèÒª×ªÒå
-#define SIMPLE_LETTER 'w' //Ò»¸ö×ÖÄ¸£¨a¡«z»òA¡«Z£©»òÊı×Ö£¨0¡«9£©»òÏÂ»®Ïß£¨_£©,ĞèÒª×ªÒå
-#define NOT_DECIMAL 'D' //³ıÁË\dÖ®ÍâµÄ×Ö·û,ĞèÒª×ªÒå
-#define NOT_LOWER_LETTER 'L' //³ıÁË\lÖ®ÍâµÄ×Ö·û,ĞèÒª×ªÒå
-#define NOT_SPACE 'S' //³ıÁË\sÖ®ÍâµÄ×Ö·û,ĞèÒª×ªÒå
-#define NOT_UPER_LETTER 'U' //³ıÁË\uÖ®ÍâµÄ×Ö·û,ĞèÒª×ªÒå
-#define NOT_SIMPLE_LETTER 'W' //³ıÁË\wÖ®ÍâµÄ×Ö·û,ĞèÒª×ªÒå
-#define RANGE_LETTER '-' //·¶Î§±íÊ¾·û
+#define CHANGE_LETTER '\\' //åŒæ–œçº¿è½¬ä¹‰
+#define TAB 't' //éœ€è¦è½¬ä¹‰
+#define RETURN_ 'r' //éœ€è¦è½¬ä¹‰
+#define NEW_LINE 'n' //éœ€è¦è½¬ä¹‰
+#define NEW_PAGE 'f' //éœ€è¦è½¬ä¹‰
+#define TAB_V 'v' //éœ€è¦è½¬ä¹‰
+#define BLANK ' ' //ç©ºæ ¼
+#define COMMA ',' //é€—å·
+#define DOT '.' //é€šé…ç¬¦
+#define MULTI_MATCH_LETTER '*' //å¤šæ¬¡åŒ¹é…ç¬¦
+#define QUES '?' //0æˆ–1ä¸ª
+#define PLUS '+' //ä¸€ä¸ªæˆ–å¤šä¸ª
+#define DECIMAL 'd' //ä¸€ä¸ªåè¿›åˆ¶æ•°å­—,éœ€è¦è½¬ä¹‰
+#define LOWER_LETTER 'l' //ä¸€ä¸ªå°å†™å­—æ¯,éœ€è¦è½¬ä¹‰
+#define SPACE 's' //ä¸€ä¸ªç©ºç™½ç¬¦ï¼ˆç©ºæ ¼ç¬¦ï¼Œåˆ¶è¡¨ç¬¦ç­‰ï¼‰,éœ€è¦è½¬ä¹‰
+#define UPER_LETTER 'u'//ä¸€ä¸ªå¤§å†™å­—æ¯,éœ€è¦è½¬ä¹‰
+#define SIMPLE_LETTER 'w' //ä¸€ä¸ªå­—æ¯ï¼ˆaï½zæˆ–Aï½Zï¼‰æˆ–æ•°å­—ï¼ˆ0ï½9ï¼‰æˆ–ä¸‹åˆ’çº¿ï¼ˆ_ï¼‰,éœ€è¦è½¬ä¹‰
+#define NOT_DECIMAL 'D' //é™¤äº†\dä¹‹å¤–çš„å­—ç¬¦,éœ€è¦è½¬ä¹‰
+#define NOT_LOWER_LETTER 'L' //é™¤äº†\lä¹‹å¤–çš„å­—ç¬¦,éœ€è¦è½¬ä¹‰
+#define NOT_SPACE 'S' //é™¤äº†\sä¹‹å¤–çš„å­—ç¬¦,éœ€è¦è½¬ä¹‰
+#define NOT_UPER_LETTER 'U' //é™¤äº†\uä¹‹å¤–çš„å­—ç¬¦,éœ€è¦è½¬ä¹‰
+#define NOT_SIMPLE_LETTER 'W' //é™¤äº†\wä¹‹å¤–çš„å­—ç¬¦,éœ€è¦è½¬ä¹‰
+#define RANGE_LETTER '-' //èŒƒå›´è¡¨ç¤ºç¬¦
 
- /*ÊÇ·ñ°üº¬Êı×Ö×Ö·û*/
-bool has_num(const char* str) {
+ /*æ˜¯å¦åŒ…å«æ•°å­—å­—ç¬¦*/
+static bool has_num(const char* str) {
 	int index = 0;
 	while (str[index] != '\0') {
 		if (str[index] >= '0'&&str[index] <= '9') {
@@ -52,8 +52,8 @@ bool has_num(const char* str) {
 	return false;
 }
 
-/*ÊÇ·ñÊÇÒ»¸öÊı×Ö*/
-bool is_num(const char* str) {
+/*æ˜¯å¦æ˜¯ä¸€ä¸ªæ•°å­—*/
+static bool is_num(const char* str) {
 	bool has_num_char = false;
 	bool has_num = false;
 	int index = 0;

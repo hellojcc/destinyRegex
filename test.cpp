@@ -1,13 +1,14 @@
 /*******************************************************
  *	test.cpp
- *	author:ÌìÃü½£Ö÷
- *	copyright(c) 2015 - ~: Çë²é¿´LICENSEÎÄ¼þ
- *	Description(ÃèÊö):²âÊÔ
+ *	author:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *	copyright(c) 2015 - ~: ï¿½ï¿½é¿´LICENSEï¿½Ä¼ï¿½
+ *	Description(ï¿½ï¿½ï¿½ï¿½):ï¿½ï¿½ï¿½ï¿½
  ******************************************************/
 #include "header.h"
 using std::string;
-
-//²âÊÔÕýÔò±í´ïÊ½·Ö¸î×Ö·û´®
+#include <vector>
+using std::vector;
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½Ö¸ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 void test_token_cpp() {
 	RegularExpression::string str = "abcdabcdacbd";
 	try {
@@ -19,29 +20,37 @@ void test_token_cpp() {
 			it++;
 		}
 	}
-	catch (exception e) {
+	catch (regException e) {
 		cout << e.what() << endl;
 	}
 }
 
-//²âÊÔÕýÔò±í´ïÊ½Æ¥Åä
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Æ¥ï¿½ï¿½
 void test_match_cpp() {
-	string str = "abcdabcdacbd";
-	try {
-		regex reg("abcd");
-		if (regex_match(str, reg)) {
-			cout << "true" << endl;
+	cout<<"test_match_cpp"<<endl;
+	string str = "/i-tvbin/sdf234__--";
+	std::vector<string> patterns;
+	patterns.push_back("/i-tvbin/[-a-z0-9_/]*");
+	patterns.push_back("/[-a-z_/]*");
+	patterns.push_back("[a-d]*");
+	for (size_t i = 0; i < patterns.size(); ++i) {
+		string pattern = patterns[i];//"abcd";
+		try {
+			regex reg(pattern);
+			if (regex_match(str, reg)) {
+				cout << pattern << ":true" << endl;
+			}
+			else {
+				cout << pattern << ":false" << endl;
+			}
 		}
-		else {
-			cout << "false" << endl;
+		catch (regException e) {
+			cout << e.what() << endl;
 		}
-	}
-	catch (exception e) {
-		cout << e.what() << endl;
 	}
 }
 
-//²âÊÔÕýÔò±í´ïÊ½ËÑË÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 void test_search_cpp() {
 	string str = "abcdabcdacbd";
 	try {
@@ -53,7 +62,7 @@ void test_search_cpp() {
 			cout << "false" << endl;
 		}
 	}
-	catch (exception e) {
+	catch (regException e) {
 		cout << e.what() << endl;
 	}
 }
